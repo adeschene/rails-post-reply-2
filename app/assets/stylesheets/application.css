@@ -43,6 +43,15 @@ img {
   margin-bottom: 2em;
 }
 
+/* General purpose classes */
+.bold {
+  font-weight: bold;
+}
+
+.show-whitespace {
+  white-space: pre-wrap;
+}
+
 /* CSS for styling alerts/notices
 (source: https://codepen.io/j_holtslander/pen/MzNPbP) */
 .alert .card-content .material-icons {
