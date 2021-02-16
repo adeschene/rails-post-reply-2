@@ -13,3 +13,50 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  background: #36ff8d;
+}
+
+.form-spacer {
+  margin-bottom: 1em;
+}
+
+.card-top-spacer {
+  margin-top: 3em;
+}
+
+.inner-card-top-spacer {
+  margin-top: 3em;
+}
+
+img {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.avatar-upload {
+  margin-bottom: 2em;
+}
+
+/* CSS for styling alerts/notices
+(source: https://codepen.io/j_holtslander/pen/MzNPbP) */
+.alert .card-content .material-icons {
+  font-size: 1.5em;
+  position: relative;
+  top: 1px;
+  margin-right: 0.5em;
+}
+.alert .card-content p {
+  display: flex;
+  align-items: center;
+}
+.alert {
+  display: flex;
+  align-items: center;
+  height: 3em;
+}

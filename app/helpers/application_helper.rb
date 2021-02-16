@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def user_avatar(user, size=100)
+  def user_avatar(user)
     if user.avatar.attached?
       user.avatar
     else
