@@ -1,7 +1,29 @@
-<h3>Welcome <%= current_user.try(:email) %></h3>
-
+<%# Render the user's home screen if they are logged in %>
 <% if current_user %>
-  <%= image_tag user_avatar(current_user) %>
+
+  <%# Show user's info %>
+  <div class="card-panel card-top-spacer">
+    <%= image_tag user_avatar(current_user), class: 'circle' %>
+  </div>
+  <%# Show list of overall recent topics %>
+  <div class="card-panel card-top-spacer">
+    <p>No posts on site...</p>
+  </div>
+  <%# Show list of user's recent activity %>
+  <div class="card-panel card-top-spacer">
+    <p>You haven't made any posts yet...</p>
+  </div>
+
+<%# Render the welcome screen if user is not signed in %>
 <% else %>
+
+  <div class="card-panel card-top-spacer center-align">
+    <h1>Welcome!</h1>
+    <p class="welcome-subtitle">You need to either log in or sign up for a new account to start using this app.</p>
+    <div class="container center-align welcome-btns">
+      <%= link_to "Log In", new_user_session_path, class: "welcome-btn-left btn waves-effect waves-light light-blue accent-4" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "welcome-btn-right btn waves-effect waves-light" %>
+    </div>
+  </div>
 
 <% end %>

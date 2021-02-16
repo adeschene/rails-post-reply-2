@@ -1,0 +1,12 @@
+<%# Display the comment with " says:" appended to user's email; provide delete button %>
+<div class="card-panel mb-2 w-75 mx-auto">
+  <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-muted"><%= comment.user.email %> says:</h6>
+    <p class="card-text"><%= simple_format(comment.body) %></p>
+    <% if current_user == comment.user %>
+      <div class="text-center">
+        <%= link_to 'Delete', [comment.topic, comment], method: :delete, data: { confirm: "Are you sure?" }, class: "btn-sm btn-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>

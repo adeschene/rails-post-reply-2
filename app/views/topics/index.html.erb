@@ -1,0 +1,32 @@
+<%# New topic form rendered in a card %>
+<div class="card w-100 mx-auto mb-5 text-dark bg-light">
+  <div class="card-header">
+    <p class="card-text text-center">New topic</p>
+  </div>
+  <div class="card-body">
+    <%# Needs a blank Topic instance to create the form, so create it and pass it in %>
+    <%= render "form", topic: Topic.new %>
+  </div>
+</div>
+
+<%# Check if there are any topics %>
+<% if @topics.empty? %>
+  <%# If the topics array is empty, make user aware with a card %>
+  <div class="card w-75 mx-auto mb-5">
+    <div class="card-header text-center">
+      <p class="card-text">No topics on site...</p>
+    </div>
+  </div>
+<% else %>
+  <%# Otherwise, list all topics as clickable links %>
+  <div class="list-group mb-5">
+    <%# A fully-disabled link; used as a header for the list %>
+    <a href="#" class="list-group-item list-group-item-secondary text-center pe-none py-2">
+      <span class="fs-5">Topics:</span>
+    </a>
+    <%# Goes thru each topic and creates a clickable list-group-item link %>
+    <% @topics.each do |topic| %>
+      <%= link_to topic.title, topic, class: "list-group-item list-group-item-action list-group-item-light py-3" %>
+    <% end %>
+  </div>
+<% end %>
