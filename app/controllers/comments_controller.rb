@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     if @comment.valid?
       redirect_to topic_path(@topic), notice: "Comment successfully created!"
     else
-      redirect_to topic_path(@topic), alert: "Invalid input, comment creation failed..."
+      redirect_to topic_path(@topic), alert: "Error: Must provide body text..."
     end
   end
 

@@ -6,7 +6,9 @@
     <div class="row">
       <div class="col s12 m6 l6">
         <div class="row center-align">
-          <%= image_tag user_avatar(current_user), class: 'circle homepage-avatar' %>
+          <div class="avatar-container manual-center homepage-avatar-size">
+            <%= image_tag user_avatar(current_user), class: 'avatar' %>
+          </div>
         </div>
         <div class="row center-align">
           <strong><%= current_user.username %></strong>

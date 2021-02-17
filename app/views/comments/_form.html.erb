@@ -4,7 +4,9 @@
     <%= form.label :body %>
     <%= form.text_area :body, class: "materialize-textarea", rows: "4" %>
   </div>
-  <%= form.hidden_field :user_id, value: current_user.id %>
+  <% if user_signed_in? %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  <% end %>
 
   <div class="field input-field">
     <%= form.submit "Submit", class: "btn light-blue accent-4" %>

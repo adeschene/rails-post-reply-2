@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_topic, only: [:edit, :update, :destroy]
 
   def index
@@ -18,7 +18,7 @@ class TopicsController < ApplicationController
     if @topic.save
       redirect_to @topic, notice: "Topic successfully created!"
     else
-      redirect_to topics_path, alert: "Invalid input, topic creation failed..."
+      redirect_to topics_path, alert: "Error: Must provide title and description......"
     end
   end
 
@@ -37,7 +37,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
 
-    redirect_to root_path, notice: "Topic successfully deleted!"
+    redirect_to topics_path, notice: "Topic successfully deleted!"
   end
 
   private

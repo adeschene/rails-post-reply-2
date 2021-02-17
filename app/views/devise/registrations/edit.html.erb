@@ -5,8 +5,10 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="field">
-        <%= image_tag user_avatar(resource), class: 'edit-page-avatar circle form-spacer' %>
+      <div class="field left-align form-spacer">
+        <div class="avatar-container edit-avatar-size">
+          <%= image_tag user_avatar(resource), class: 'avatar' %>
+        </div>
       </div>
 
       <div class="field avatar-upload">
