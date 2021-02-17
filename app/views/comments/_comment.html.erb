@@ -1,14 +1,15 @@
 <%# Display the comment with " says:" appended to user's email; provide delete button %>
-<div class="card-panel">
-  <div class="card-content">
-    <span class="bold"><%= comment.user.email %> says:</span>
-    <div class="show-whitespace">
-      <p><%= comment.body %></p>
-    </div>
+<li class="collection-item">
+  <div class="comment-header">
+    <h6><strong><%= comment.user == current_user ? "You" : comment.user.username %></strong> said:</h6>
     <% if current_user == comment.user %>
-      <div class="">
-        <%= link_to 'Delete', [comment.topic, comment], method: :delete, data: { confirm: "Are you sure?" }, class: "btn-small red waves-effect waves-light accent-2" %>
-      </div>
+      <%= link_to 'DELETE', [comment.topic, comment], method: :delete, data: { confirm: "Are you sure?" }, class: "comment-delete" %>
     <% end %>
   </div>
-</div>
+  <div class="show-whitespace">
+    <p><%= comment.body %></p>
+  </div>
+  <div class="right-align">
+    Posted on <%= comment.created_at.strftime("%m/%d/%Y at %H:%M %Z") %>
+  </div>
+</li>

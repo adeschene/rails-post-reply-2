@@ -6,7 +6,6 @@
     <%= render "form", topic: Topic.new %>
   </div>
 </div>
-
 <%# Check if there are any topics %>
 <% if @topics.empty? %>
   <%# If the topics array is empty, make user aware with a card %>
@@ -16,19 +15,23 @@
     </div>
   </div>
 <% else %>
-  <%# Otherwise, list all topics as clickable links %>
-  <div class="collection">
-    <li class="collection-item collection-header topic-list-header center-align">
-      <h4 class="bold">Topics</h4>
-    </li>
-    <%# Goes thru each topic and creates a clickable list-group-item link %>
-    <% @topics.each do |topic| %>
-      <%= link_to topic, class: "collection-item" do %>
-        <%= topic.title %>
-        <div class="right-align">
-          Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= topic.user.email %></strong>
-        </div>
+  <%# Otherwise, list all topics %>
+  <div class="card">
+    <div class="collection">
+      <li class="collection-item collection-header center-align">
+        <h5 class="bold">Topics</h5>
+      </li>
+      <%# Goes thru each topic and creates a clickable link %>
+      <% @topics.each do |topic| %>
+        <%= link_to topic, class: "collection-item" do %>
+          <div class="title-overflow">
+            <%= topic.title %>
+          </div>
+          <div class="right-align">
+            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= topic.user.username %></strong>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 <% end %>

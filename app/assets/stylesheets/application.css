@@ -30,9 +30,8 @@ body {
   margin-top: 3em;
 }
 
-img {
-  height: 100px;
-  width: 100px;
+li {
+  list-style: none;
 }
 
 .text-bold {
@@ -43,13 +42,45 @@ img {
   margin-bottom: 2em;
 }
 
+.edit-page-avatar {
+  height: 170px;
+  width: 170px;
+}
+
 /* General purpose classes */
 .bold {
   font-weight: bold;
 }
 
+.back-btn {
+  margin-bottom: 3em;
+  margin-top: 2em;
+}
+
+.title-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 90%;
+}
+
+.topic-description {
+  white-space: pre-line;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 0 1em;
+  margin: 12px 0;
+}
+
 .show-whitespace {
-  white-space: pre-wrap;
+  white-space: pre-line;
+  margin: -15px 0;
+}
+
+.view-all-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* CSS for styling alerts/notices

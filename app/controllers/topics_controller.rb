@@ -3,7 +3,9 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:edit, :update, :destroy]
 
   def index
-    @topics = Topic.all
+    # If the parameter :user_topics is passed, display only the user's posted topics
+    # otherwise, display all topics (default)
+    @topics = params[:user_topics] ? current_user.topics.order(created_at: :desc) : Topic.all.order(created_at: :desc)
   end
 
   def show
@@ -14,9 +16,9 @@ class TopicsController < ApplicationController
     @topic = current_user.topics.build(topic_params)
 
     if @topic.save
-      redirect_to root_path, notice: "Topic successfully created!"
+      redirect_to @topic, notice: "Topic successfully created!"
     else
-      redirect_to root_path, alert: "Invalid input, topic creation failed..."
+      redirect_to topics_path, alert: "Invalid input, topic creation failed..."
     end
   end
 

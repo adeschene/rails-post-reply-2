@@ -3,27 +3,59 @@
 
   <%# Show user's info %>
   <div class="card-panel card-top-spacer">
-    <%= image_tag user_avatar(current_user), class: 'circle' %>
+    <div class="row">
+      <div class="col s12 m6 l6">
+        <div class="row center-align">
+          <%= image_tag user_avatar(current_user), class: 'circle homepage-avatar' %>
+        </div>
+        <div class="row center-align">
+          <strong><%= current_user.username %></strong>
+        </div>
+      </div>
+      <div class="col s12 m6 l6 profile-info">
+        <div class="row profile-item">
+          <strong>Email:</strong> <%= current_user.email %>
+        </div>
+        <div class="row profile-item">
+          <strong>Total Posts:</strong> <%= current_user.topics.count %>
+        </div>
+        <div class="row profile-item">
+          <strong>Total Comments:</strong> <%= current_user.comments.count %>
+        </div>
+        <div class="row profile-item">
+          <strong>Member Since:</strong> <%= current_user.created_at.strftime("%m/%d/%Y") %>
+        </div>
+      </div>
+    </div>
   </div>
   <%# Show user that there are no topics if there aren't any %>
   <% if @recent_topics.empty? %>
     <div class="card-panel card-top-spacer">
-      <p>No posts on site...</p>
+      <p>No posts have been made yet...</p>
     </div>
   <% else %>
     <%# Otherwise, list recent topics on site %>
     <div class="collection">
       <li class="collection-item collection-header topic-list-header center-align">
-        <h4 class="bold">Recent Topics</h4>
+        <h5 class="bold">Recent Topics</h5>
       </li>
       <%# Goes thru each topic and creates a clickable link %>
       <% @recent_topics.each do |topic| %>
         <%= link_to topic, class: "collection-item" do %>
-          <%= topic.title %>
+          <div class="title-overflow">
+            <%= topic.title %>
+          </div>
           <div class="right-align">
-            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= topic.user.email %></strong>
+            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= topic.user.username %></strong>
           </div>
         <% end %>
+      <% end %>
+      <%# Link to all posts %>
+      <%= link_to topics_path, class: 'collection-item' do %>
+        <div class="view-all-link">
+          <span>View All</span>
+          <i class="material-icons">chevron_right</i>
+        </div>
       <% end %>
     </div>
   <% end %>
@@ -36,16 +68,25 @@
     <%# Otherwise, list their recently created topics %>
     <div class="collection">
       <li class="collection-item collection-header topic-list-header center-align">
-        <h4 class="bold"><%= current_user.email %>'s Topics</h4>
+        <h5 class="bold"><%= current_user.username %>'s Topics</h5>
       </li>
       <%# Goes thru each topic and creates a clickable link %>
       <% @user_topics.each do |topic| %>
         <%= link_to topic, class: "collection-item" do %>
-          <%= topic.title %>
+          <div class="title-overflow">
+            <%= topic.title %>
+          </div>
           <div class="right-align">
-            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= topic.user.email %></strong>
+            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %>
           </div>
         <% end %>
+      <% end %>
+      <%# Link to all posts %>
+      <%= link_to topics_path('user_topics': true), class: 'collection-item' do %>
+        <div class="view-all-link">
+          <span>View All</span>
+          <i class="material-icons">chevron_right</i>
+        </div>
       <% end %>
     </div>
   <% end %>

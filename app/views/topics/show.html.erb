@@ -1,16 +1,25 @@
 <%# Display the topic and give the option to edit and delete it %>
 <div class="card card-top-spacer">
   <div class="card-content">
-    <span class="card-title bold"><strong>Topic:</strong> <%= @topic.title %></span>
-    <div class="show-whitespace">
+    <div class="topic-header">
+      <span class="card-title title-overflow"><strong>Title:</strong> <%= @topic.title %></span>
+      <% if current_user == @topic.user %>
+        <div>
+          <%= link_to edit_topic_path(@topic), class: 'btn waves-effect waves-light light-blue accent-4' do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+          <%= link_to topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn red waves-effect waves-light accent-2' do %>
+            <i class="material-icons">delete</i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="topic-description">
       <p><%= @topic.description %></p>
     </div>
-    <% if current_user == @topic.user %>
-      <div class="text-center">
-      <%= link_to "Edit", edit_topic_path(@topic), class: 'btn waves-effect waves-light light-blue accent-4' %>
-      <%= link_to "Delete", topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn red waves-effect waves-light accent-2' %>
-      </div>
-    <% end %>
+    <div class="right-align">
+      Posted on <%= @topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= @topic.user == current_user ? "you" : @topic.user.username %></strong>
+    </div>
   </div>
 </div>
 
@@ -25,12 +34,11 @@
 <% else %>
   <%# If there are comments, display all the comments %>
   <div class="card">
-    <div class="card-content">
-      <span class="card-title center-align bold">Comments</span>
+    <div class="collection">
+      <%# Renders each comment one by one using the partial expansion feature;
+      It's like rendering comments/comment.html.erb with each comment as the param %>
+      <%= render @topic.comments %>
     </div>
-    <%# Renders each comment one by one using the partial expansion feature %>
-    <%# It's like rendering comments/comment.html.erb with each comment as the param %>
-    <%= render @topic.comments %>
   </div>
 <% end %>
 
@@ -43,6 +51,6 @@
 </div>
 
 <%# Adds a back button at the bottom that takes user back to root page %>
-<div class="center-align">
-  <%= link_to "Back", root_path, class: 'btn waves-effect waves-light light-blue accent-4' %>
+<div class="center-align back-btn">
+  <%= link_to "Back", topics_path, class: 'btn waves-effect waves-light light-blue accent-4' %>
 </div>
