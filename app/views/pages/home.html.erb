@@ -5,14 +5,50 @@
   <div class="card-panel card-top-spacer">
     <%= image_tag user_avatar(current_user), class: 'circle' %>
   </div>
-  <%# Show list of overall recent topics %>
-  <div class="card-panel card-top-spacer">
-    <p>No posts on site...</p>
-  </div>
-  <%# Show list of user's recent activity %>
-  <div class="card-panel card-top-spacer">
-    <p>You haven't made any posts yet...</p>
-  </div>
+  <%# Show user that there are no topics if there aren't any %>
+  <% if @recent_topics.empty? %>
+    <div class="card-panel card-top-spacer">
+      <p>No posts on site...</p>
+    </div>
+  <% else %>
+    <%# Otherwise, list recent topics on site %>
+    <div class="collection">
+      <li class="collection-item collection-header topic-list-header center-align">
+        <h4 class="bold">Recent Topics</h4>
+      </li>
+      <%# Goes thru each topic and creates a clickable link %>
+      <% @recent_topics.each do |topic| %>
+        <%= link_to topic, class: "collection-item" do %>
+          <%= topic.title %>
+          <div class="right-align">
+            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= topic.user.email %></strong>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  <%# Show user that they haven't posted anything if they haven't %>
+  <% if @user_topics.empty? %>
+    <div class="card-panel card-top-spacer">
+      <p>You haven't made any posts yet...</p>
+    </div>
+  <% else %>
+    <%# Otherwise, list their recently created topics %>
+    <div class="collection">
+      <li class="collection-item collection-header topic-list-header center-align">
+        <h4 class="bold"><%= current_user.email %>'s Topics</h4>
+      </li>
+      <%# Goes thru each topic and creates a clickable link %>
+      <% @user_topics.each do |topic| %>
+        <%= link_to topic, class: "collection-item" do %>
+          <%= topic.title %>
+          <div class="right-align">
+            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= topic.user.email %></strong>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 
 <%# Render the welcome screen if user is not signed in %>
 <% else %>
