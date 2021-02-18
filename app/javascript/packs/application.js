@@ -13,4 +13,4 @@ Turbolinks.start()
 ActiveStorage.start()
 
 require("jquery")
-require("charlimit/charlimit")
+require("custom/custom")
