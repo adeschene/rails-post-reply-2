@@ -1,5 +1,5 @@
 <%# New topic form rendered in a card %>
-<div class="card card-top-spacer">
+<div class="card card-top-spacer card-bottom-spacer">
   <div class="card-content">
     <span class="card-title">New topic</span>
     <%# Needs a blank Topic instance to create the form, so create it and pass it in %>
@@ -27,11 +27,19 @@
           <div class="title-overflow">
             <%= topic.title %>
           </div>
-          <div class="right-align">
-            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= topic.user.username %></strong>
+          <div class="post-info">
+            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by&nbsp;<strong><%= topic.user == current_user ? "you" : topic.user.username %></strong>&nbsp;&nbsp;
+            <div class="post-info-avatar">
+              <%= image_tag user_avatar(topic.user), class: 'avatar' %>
+            </div>
           </div>
         <% end %>
       <% end %>
     </div>
   </div>
 <% end %>
+
+<%# Adds a back button at the bottom that takes user back to their home page %>
+<div class="center-align back-btn">
+  <%= link_to "Back", root_path, class: 'btn waves-effect waves-light light-blue accent-4' %>
+</div>

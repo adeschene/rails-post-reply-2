@@ -17,8 +17,11 @@
     <div class="topic-description">
       <p><%= @topic.description %></p>
     </div>
-    <div class="right-align">
-      Posted on <%= @topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= @topic.user == current_user ? "you" : @topic.user.username %></strong>
+    <div class="post-info">
+      Posted on <%= @topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by&nbsp;<strong><%= @topic.user == current_user ? "you" : @topic.user.username %></strong>&nbsp;&nbsp;
+      <div class="post-info-avatar">
+        <%= image_tag user_avatar(@topic.user), class: 'avatar' %>
+      </div>
     </div>
   </div>
 </div>
@@ -26,14 +29,14 @@
 <%# Check if there are any comments for this post %>
 <% if @topic.comments.empty? %>
   <%# If the comments array is empty, make user aware with a card %>
-  <div class="card">
+  <div class="card card-bottom-spacer">
     <div class="card-content">
       <span class="card-title center-align bold">No comments yet...</span>
     </div>
   </div>
 <% else %>
   <%# If there are comments, display all the comments %>
-  <div class="card">
+  <div class="card card-bottom-spacer">
     <div class="collection">
       <%# Renders each comment one by one using the partial expansion feature;
       It's like rendering comments/comment.html.erb with each comment as the param %>

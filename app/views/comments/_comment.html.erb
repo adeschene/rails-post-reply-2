@@ -1,7 +1,12 @@
 <%# Display the comment with " says:" appended to user's email; provide delete button %>
 <li class="collection-item">
   <div class="comment-header">
-    <h6><strong><%= comment.user == current_user ? "You" : comment.user.username %></strong> said:</h6>
+    <div class="comment-info">
+      <div class="comment-avatar">
+        <%= image_tag user_avatar(comment.user), class: 'avatar' %>
+      </div>
+      &nbsp;&nbsp;<strong><%= comment.user == current_user ? "You" : comment.user.username %></strong>&nbsp;said:
+    </div>
     <% if current_user == comment.user %>
       <%= link_to 'DELETE', [comment.topic, comment], method: :delete, data: { confirm: "Are you sure?" }, class: "comment-delete" %>
     <% end %>

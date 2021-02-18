@@ -2,7 +2,7 @@
 <% if current_user %>
 
   <%# Show user's info %>
-  <div class="card-panel card-top-spacer">
+  <div class="card-panel card-top-spacer card-bottom-spacer">
     <div class="row">
       <div class="col s12 m6 l6">
         <div class="row center-align">
@@ -47,8 +47,11 @@
           <div class="title-overflow">
             <%= topic.title %>
           </div>
-          <div class="right-align">
-            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by <strong><%= topic.user.username %></strong>
+          <div class="post-info">
+            Posted on <%= topic.created_at.strftime("%m/%d/%Y at %H:%M %Z") %> by&nbsp;<strong><%= topic.user == current_user ? "you" : topic.user.username %></strong>&nbsp;&nbsp;
+            <div class="post-info-avatar">
+              <%= image_tag user_avatar(topic.user), class: 'avatar' %>
+            </div>
           </div>
         <% end %>
       <% end %>
@@ -63,12 +66,12 @@
   <% end %>
   <%# Show user that they haven't posted anything if they haven't %>
   <% if @user_topics.empty? %>
-    <div class="card-panel card-top-spacer">
+    <div class="card-panel card-top-spacer card-bottom-spacer">
       <p>You haven't made any posts yet...</p>
     </div>
   <% else %>
     <%# Otherwise, list their recently created topics %>
-    <div class="collection">
+    <div class="collection card-bottom-spacer">
       <li class="collection-item collection-header topic-list-header center-align">
         <h5 class="bold"><%= current_user.username %>'s Topics</h5>
       </li>

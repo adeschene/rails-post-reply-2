@@ -3,6 +3,18 @@
   justify-content: space-between;
   align-items: center;
 
+  .comment-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 16px;
+
+    .comment-avatar {
+      height: 40px;
+      width: 40px;
+    }
+  }
+
   .comment-delete {
     color: red;
     text-decoration: none;

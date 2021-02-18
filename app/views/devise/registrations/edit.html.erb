@@ -11,13 +11,14 @@
         </div>
       </div>
 
-      <div class="field avatar-upload">
-        <%= f.label :avatar, class: "btn light-blue accent-4" do %>
-          Select new avatar
-          <span style="display:none;">
-            <%= f.file_field :avatar %>
-          </span>
-        <% end %>
+      <div class="file-field input-field">
+        <div class="btn light-blue accent-4">
+          <span>Select New Avatar</span>
+          <%= f.file_field :avatar %>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
       </div>
 
       <div class="field input-field form-spacer">
@@ -38,7 +39,9 @@
         <%= f.label :password %>
         <%= f.password_field :password, autocomplete: "new-password" %>
         <% if @minimum_password_length %>
-          <em><%= @minimum_password_length %> characters minimum</em>
+          <div class="helper-text">
+            <em><%= @minimum_password_length %> characters minimum</em>
+          </div>
         <% end %>
       </div>
 
@@ -49,7 +52,10 @@
 
       <div class="field input-field form-spacer">
         <%= f.label :current_password %>
-        <%= f.password_field :current_password, autocomplete: "current-password" %> <i>(we need your current password to confirm your changes)</i>
+        <%= f.password_field :current_password, autocomplete: "current-password" %>
+        <div class="helper-text">
+          <i>(we need your current password to confirm your changes)</i>
+        </div>
       </div>
 
       <div class="actions">

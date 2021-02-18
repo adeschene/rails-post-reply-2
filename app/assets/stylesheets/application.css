@@ -15,7 +15,7 @@
  */
 
 body {
-  background: #36ff8d;
+  background: #748279;
 }
 
 .form-spacer {
@@ -63,6 +63,17 @@ li {
   width: 170px;
 }
 
+.post-info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.post-info-avatar {
+  height: 30px;
+  width: 30px;
+}
+
 /* General purpose classes */
 .manual-center {
   margin-left: auto;
@@ -78,11 +89,15 @@ li {
   margin-top: 2em;
 }
 
+.card-bottom-spacer {
+  margin-bottom: 3em;
+}
+
 .title-overflow {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: 90%;
+  max-width: 90%;
 }
 
 .topic-description {
