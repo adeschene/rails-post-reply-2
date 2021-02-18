@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.2'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'aws-sdk-s3', '~> 1.88', '>= 1.88.1'
+gem 'gravatar_image_tag', '~> 1.2'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
