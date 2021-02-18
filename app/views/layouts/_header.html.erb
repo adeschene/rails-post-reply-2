@@ -8,11 +8,23 @@
   </li>
 </ul>
 
-<nav>
+<nav class="red darken-4">
   <div class="nav-wrapper navbar-x-spacers">
+    <%# Title link on the left side of the navbar %>
     <%= link_to "Rails Message Board", root_path, class: "brand-logo left" %>
+    <%# Links on the right side of the navbar %>
     <ul id="nav-mobile" class="right">
-      <li><%= link_to "Topics List", topics_path %></li>
+      <li>
+        <%= link_to root_path, class: 'navbar-icon' do %>
+          <i class="material-icons" id="home-icon">home</i>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to topics_path, class: 'navbar-icon' do %>
+          <i class="material-icons" id="forum-icon">forum</i>
+        <% end %>
+      </li>
+      <%# Only show avatar dropdown (with log out/edit profile) if the user is logged in %>
       <% if user_signed_in? %>
         <%# Triggers the dropdown on hover %>
         <li><a class="dropdown-trigger" data-target="avatar-dropdown">
@@ -23,6 +35,7 @@
             <i class="material-icons right" id="navbar-down-arrow">arrow_drop_down</i>
           </div>
         </a></li>
+      <%# Only show log in/sign up buttons if user isn't logged in %>
       <% else %>
         <li><%= link_to "Sign Up", new_user_registration_path %></li>
         <li><%= link_to "Log In", new_user_session_path %></li>

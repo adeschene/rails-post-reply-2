@@ -1,10 +1,11 @@
-<%# Display the comment with " says:" appended to user's email; provide delete button %>
+<%# Display the comment with " said:" appended to user's email; provide delete button if current user's comment %>
 <li class="collection-item">
   <div class="comment-header">
     <div class="comment-info">
       <div class="comment-avatar">
         <%= image_tag user_avatar(comment.user), class: 'avatar' %>
       </div>
+      <%# Put "You said:" only if current user's comment %>
       &nbsp;&nbsp;<strong><%= comment.user == current_user ? "You" : comment.user.username %></strong>&nbsp;said:
     </div>
     <% if current_user == comment.user %>

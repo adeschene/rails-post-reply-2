@@ -1,6 +1,5 @@
 <%# Render the user's home screen if they are logged in %>
 <% if current_user %>
-
   <%# Show user's info %>
   <div class="card-panel card-top-spacer card-bottom-spacer">
     <div class="row">
@@ -95,10 +94,8 @@
       <% end %>
     </div>
   <% end %>
-
 <%# Render the welcome screen if user is not signed in %>
 <% else %>
-
   <div class="card-panel card-top-spacer center-align">
     <h1>Welcome!</h1>
     <p class="welcome-subtitle">You need to either log in or sign up for a new account to start using this app.</p>
@@ -107,5 +104,4 @@
       <%= link_to "Sign Up", new_user_registration_path, class: "welcome-btn-right btn waves-effect waves-light" %>
     </div>
   </div>
-
 <% end %>
